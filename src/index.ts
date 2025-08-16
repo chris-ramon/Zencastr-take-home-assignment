@@ -13,7 +13,9 @@ const service = new Service();
 app.post("/cache/add", (req: express.Request, res: express.Response) => {
   const { key, value } = req.body ?? {};
   if (typeof key !== "string" || typeof value !== "string") {
-    return res.status(400).json({ error: "key and value (both strings) are required" });
+    return res
+      .status(400)
+      .json({ error: "key and value (both strings) are required" });
   }
   service.add(key, value);
   return res.status(201).json({ key, value });
@@ -21,16 +23,22 @@ app.post("/cache/add", (req: express.Request, res: express.Response) => {
 
 // Handle GET requests in the '/get' path.
 app.get("/cache/get", (req: express.Request, res: express.Response) => {
-  const body = req.body;
-  const { key } = body;
+  const { key } = req.body ?? {};
+  if (typeof key !== "string") {
+    return res.status(400).json({ error: "key (string) is required" });
+  }
+
   const value = service.get(key);
   res.send(value);
 });
 
 // Handle POST requests in the '/remove' path.
 app.post("/cache/remove", (req: express.Request, res: express.Response) => {
-  const body = req.body;
-  const { key } = body;
+  const { key } = req.body ?? {};
+  if (typeof key !== "string") {
+    return res.status(400).json({ error: "key (string) is required" });
+  }
+
   service.remove(key);
   res.send();
 });
