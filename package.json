@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx ts-node src/index.ts",
+    "start": "tsc && node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -14,7 +14,6 @@
   },
   "devDependencies": {
     "@types/node": "^24.3.0",
-    "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
   }
 }
