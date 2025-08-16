@@ -6,6 +6,7 @@ const app: express.Application = express();
 // Enable JSON body parsing.
 app.use(express.json());
 
+const port: number = 3000;
 const service = new Service();
 
 // Add an item to the cache.
@@ -47,13 +48,7 @@ app.get("/ping", (req: express.Request, res: express.Response) => {
   res.send("OK");
 });
 
-// Export the app for testing
-export default app;
-
-// Start the server only if this file is run directly
-if (require.main === module) {
-  const port: number = 3000;
-  app.listen(port, () => {
-    console.log(`Server listening at http://localhost:${port}`);
-  });
-}
+// Starts the server.
+app.listen(port, () => {
+  console.log(`Server listening at http://localhost:${port}`);
+});
