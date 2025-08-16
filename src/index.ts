@@ -9,12 +9,14 @@ app.use(express.json());
 const port: number = 3000;
 const service = new Service();
 
-// Handle POST requests in the '/post' path.
+// Add an item to the cache.
 app.post("/cache/add", (req: express.Request, res: express.Response) => {
-  const body = req.body;
-  const { key, value } = body;
+  const { key, value } = req.body ?? {};
+  if (typeof key !== "string" || typeof value !== "string") {
+    return res.status(400).json({ error: "key and value (both strings) are required" });
+  }
   service.add(key, value);
-  res.send();
+  return res.status(201).json({ key, value });
 });
 
 // Handle GET requests in the '/get' path.
