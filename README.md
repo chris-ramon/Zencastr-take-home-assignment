@@ -8,6 +8,9 @@ To run the application:
 npm start
 ```
 
+## Sequence Diagram
+<img width="1730" height="993" alt="add" src="https://github.com/chris-ramon/Zencastr-take-home-assignment/blob/main/images/sequence-diagram.png?raw=true" />
+
 ## REST API
 
 #### Add Operation
