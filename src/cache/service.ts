@@ -8,15 +8,14 @@ export class Service {
     const options = {
       max: 10,
 
-      // for use with tracking overall storage size
+      // for use with tracking overall storage size.
       maxSize: 5000,
       sizeCalculation: (value: string, key: string) => {
         return 1;
       },
 
       // how long to live in ms.
-      // ttl: 1000 * 60 * 5,
-      ttl: 1300,
+      ttl: 1000 * 60 * 5,
     };
     this.cache = new LRUCache(options);
   }
